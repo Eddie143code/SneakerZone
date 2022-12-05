@@ -2,7 +2,7 @@ import React, { use, useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Link from "next/link";
 import { Grid } from "@mui/material";
-import Drawer from "../../components/main/drawer/drawer";
+import Drawer from "../../../components/main/drawer/drawer";
 
 const productlist = () => {
   const items = [1, 2, 3, 4, 5];
@@ -12,7 +12,6 @@ const productlist = () => {
       <Grid container>
         <Grid item xs={1}></Grid>
         <Grid item xs={2}>
-          {" "}
           <Drawer />
         </Grid>
         <Grid item xs={9}></Grid>
@@ -38,6 +37,7 @@ const productlist = () => {
           </Grid>
         );
       })}
+      <Drawer />
     </Grid>
   );
 };

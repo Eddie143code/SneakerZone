@@ -38,7 +38,12 @@ const navbar = () => {
 
           {isMobile ? (
             <>
-              {" "}
+              <IconButton>
+                <SearchIcon />
+              </IconButton>
+              <IconButton>
+                <ShoppingCartIcon />
+              </IconButton>
               <IconButton
                 id="basic-button"
                 aria-controls={open ? "basic-menu" : undefined}

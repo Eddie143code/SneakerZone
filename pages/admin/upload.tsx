@@ -39,7 +39,7 @@ const index = () => {
           }}
         >
           <Toolbar />
-          <Typography paragraph>THIS IS THE HOME PAGE</Typography>
+          <Typography paragraph>THIS IS THE UPLOAD PAGE</Typography>
         </Box>
       </Box>
     </Grid>

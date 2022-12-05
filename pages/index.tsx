@@ -19,9 +19,9 @@ import {
   Adidas_Logo,
   Converse_Logo,
   Reebok_Logo,
-} from "../components/home/home-images/index";
-import Carousel from "../components/carousel/carouselComp";
-import BrandCard from "../components/home/brandCard";
+} from "../components/main/home/home-images/index";
+import Carousel from "../components/main/carousel/carouselComp";
+import BrandCard from "../components/main/home/brandCard";
 
 export default function Home() {
   return (
