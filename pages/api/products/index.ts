@@ -8,8 +8,12 @@ const userHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(200).json(products);
   }
   if (req.method === "POST") {
-    const { name, brand } = req.body;
-    const product = await Product.create({ name: name, brand: brand });
+    const { name, brand, image } = req.body;
+    const product = await Product.create({
+      name: name,
+      brand: brand,
+      image: image,
+    });
     return res.status(200).json(product);
   }
 };
