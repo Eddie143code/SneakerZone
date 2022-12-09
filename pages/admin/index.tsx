@@ -47,3 +47,7 @@ const index = () => {
 };
 
 export default index;
+
+index.getLayout = function PageLayout(page: any) {
+  return <>{page}</>;
+};

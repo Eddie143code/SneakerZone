@@ -11,20 +11,22 @@ import {
 import Image from "next/image";
 import Navbar from "../../components/admin/navbar";
 import axios from "axios";
+import CLOUDINARY from "../../env/cloudinary";
+import { postImage, postProduct } from "../../store/functions";
 
 const drawerWidth = 200;
 
-const index = () => {
+const upload = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  const [name, setName] = useState("");
-  const [brand, setBrand] = useState("");
-  const [image, setImage] = useState("");
-  const [imageSent, setImageSent] = useState("");
+  const [name, setName] = useState<any>("");
+  const [brand, setBrand] = useState<any>("");
+  const [image, setImage] = useState<any>("");
+  const [imageSent, setImageSent] = useState<any>("");
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -41,22 +43,19 @@ const index = () => {
     }
 
     formData.append("upload_preset", "sneaker-uploads");
-
-    const data = await fetch(
-      "https://api.cloudinary.com/v1_1/dm1rghu1m/image/upload",
-      {
-        method: "POST",
-        body: formData,
-      }
-    ).then((r) => r.json());
-    setImageSent(data.public_id);
-    console.log(data.public_id);
+    let image: any;
+    const data: any = await postImage({ formData: formData }).then(
+      (d) => (image = d.data.public_id)
+    );
+    const post: any = await postProduct({
+      name: name,
+      brand: brand,
+      image: image,
+    });
   };
 
   const handleClick = async () => {
-    setImage(
-      `https://res.cloudinary.com/dm1rghu1m/image/upload/v1670502085/${imageSent}`
-    );
+    console.log(imageSent);
   };
 
   return (
@@ -115,4 +114,8 @@ const index = () => {
   );
 };
 
-export default index;
+export default upload;
+
+upload.getLayout = function PageLayout(page: any) {
+  return <>{page}</>;
+};
