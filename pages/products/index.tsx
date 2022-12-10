@@ -5,6 +5,9 @@ import { Grid } from "@mui/material";
 import Drawer from "../../components/main/drawer/drawer";
 import axios from "axios";
 import Image from "next/image";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import Sidebar from "../../components/main/sidebar/sidebar";
 
 const productlist = () => {
   const [items, setItems] = useState<any>("");
@@ -18,15 +21,18 @@ const productlist = () => {
     getData();
   }, []);
 
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
-    <Grid container>
+    <Grid sx={{ display: "flex" }} container>
       <Grid container>
         <button onClick={() => console.log(items)}></button>
-        <Grid item xs={1}></Grid>
-        <Grid item xs={2}>
-          <Drawer />
+        <Grid item xs={4}></Grid>
+        <Grid item xs={4}>
+        {isMobile ? <Drawer /> : <Sidebar />}
         </Grid>
-        <Grid item xs={9}></Grid>
+        <Grid item xs={4}></Grid>
       </Grid>
       {items &&
         items.map((item: any, i: any) => {
