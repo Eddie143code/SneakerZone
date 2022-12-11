@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
@@ -15,10 +16,37 @@ import FormLabel from "@mui/material/FormLabel";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
+import Checkbox from "@mui/material/Checkbox";
+import { FormGroup } from "@mui/material";
+
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+
+import Sidebar from "../sidebar/sidebar";
 
 type Anchor = "top" | "left" | "bottom" | "right";
 
 function TemporaryDrawer() {
+  // FORM CONTROL:
+
+  const [category, setCategory] = useState<any>({
+    Men: false,
+    Women: false,
+    Children: false,
+  });
+  const [brand, setBrand] = useState<any>({
+    Nike: false,
+    Adidas: false,
+    Converse: false,
+    Reebok: false,
+  });
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+  };
+
+  // DRAWER LOGIC:
+
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -46,56 +74,130 @@ function TemporaryDrawer() {
       role="presentation"
       // onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
+      onSubmit={handleSubmit}
     >
       <FormControl>
         <FormLabel>Brand</FormLabel>
-        <RadioGroup
+        <FormGroup
+          row
           aria-labelledby="demo-radio-buttons-group-label"
-          defaultValue="female"
-          name="radio-buttons-group"
+          defaultValue=""
         >
-          <FormControlLabel value="Nike" control={<Radio />} label="Nike" />
-          <FormControlLabel value="Adidas" control={<Radio />} label="Adidas" />
+          <FormControlLabel
+            value="Nike"
+            control={
+              <Checkbox
+                onChange={() => setBrand({ ...brand, Nike: !brand.Nike })}
+              />
+            }
+            label="Nike"
+          />
+          <FormControlLabel
+            value="Adidas"
+            control={
+              <Checkbox
+                onChange={() => setBrand({ ...brand, Adidas: !brand.Adidas })}
+              />
+            }
+            label="Adidas"
+          />
           <FormControlLabel
             value="Converse"
-            control={<Radio />}
+            control={
+              <Checkbox
+                onChange={() =>
+                  setBrand({ ...brand, Converse: !brand.Converse })
+                }
+              />
+            }
             label="Converse"
           />
-          <FormControlLabel value="Reebok" control={<Radio />} label="Reebok" />
-        </RadioGroup>
+          <FormControlLabel
+            value="Reebok"
+            control={
+              <Checkbox
+                onChange={() => setBrand({ ...brand, Reebok: !brand.Reebok })}
+              />
+            }
+            label="Reebok"
+          />
+        </FormGroup>
       </FormControl>
       <Divider />
       <FormControl>
         <FormLabel>Category</FormLabel>
-        <RadioGroup
+        <FormGroup
+          row
           aria-labelledby="demo-radio-buttons-group-label"
-          defaultValue="female"
-          name="radio-buttons-group"
+          defaultValue=""
         >
-          <FormControlLabel value="Men" control={<Radio />} label="Men" />
-          <FormControlLabel value="Women" control={<Radio />} label="Women" />
+          <FormControlLabel
+            value="Men"
+            control={
+              <Checkbox
+                onChange={() => {
+                  setCategory({ ...category, Men: !brand.Men });
+                }}
+              />
+            }
+            label="Men"
+          />
+          <FormControlLabel
+            value="Women"
+            control={
+              <Checkbox
+                onChange={() => {
+                  setCategory({ ...category, women: !brand.Women });
+                }}
+              />
+            }
+            label="Women"
+          />
           <FormControlLabel
             value="children"
-            control={<Radio />}
-            label="children"
+            control={
+              <Checkbox
+                onChange={() => {
+                  setCategory({ ...category, children: !brand.Children });
+                }}
+              />
+            }
+            label="Children"
           />
-        </RadioGroup>
+        </FormGroup>
       </FormControl>
     </Box>
   );
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
     <div>
       {(["left"] as const).map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>filter</Button>
-          <Drawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-          >
-            {list(anchor)}
-          </Drawer>
+          <button onClick={() => console.log(category)}>show category</button>
+          <button onClick={() => console.log(brand)}>show brand</button>
+          {isMobile ? (
+            <>
+              <Button onClick={toggleDrawer(anchor, true)}>filter</Button>
+              <Drawer
+                anchor={anchor}
+                open={state[anchor]}
+                onClose={toggleDrawer(anchor, false)}
+              >
+                {list(anchor)}
+              </Drawer>
+            </>
+          ) : (
+            <Sidebar
+              category={category}
+              setCategory={setCategory}
+              setBrand={setBrand}
+              brand={brand}
+              onSubmit={handleSubmit}
+            />
+          )}
         </React.Fragment>
       ))}
     </div>

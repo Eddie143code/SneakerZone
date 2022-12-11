@@ -7,6 +7,8 @@ import Drawer from "../../../components/main/drawer/drawer";
 const productlist = () => {
   const items = [1, 2, 3, 4, 5];
 
+  useEffect(() => {}, []);
+
   return (
     <Grid container>
       <Grid container>

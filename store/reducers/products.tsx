@@ -25,10 +25,14 @@ export function useProductDispatch() {
   return useContext(DispatchUploadProductContext);
 }
 
-const productReducer = (product: any, action: any) => {
+const productReducer = (products: any, action: any) => {
   switch (action.type) {
     case "upload": {
-      return product;
+      return products;
+    }
+    case "getProducts": {
+      products = action.payload;
+      return products;
     }
   }
 };

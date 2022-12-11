@@ -7,30 +7,40 @@ import axios from "axios";
 import Image from "next/image";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import Sidebar from "../../components/main/sidebar/sidebar";
+import { useSearchParams } from "next/navigation";
+import { useProductDispatch } from "../../store/reducers/products";
+import { useProducts } from "../../store/reducers/products";
+import { getProductData } from "../../store/functions";
 
 const productlist = () => {
   const [items, setItems] = useState<any>("");
 
+  const products = useProducts();
+
+  const searchParams = useSearchParams();
+
+  const dispatch: any = useProductDispatch();
+
   const getData = async () => {
-    const data: any = await axios.get("/api/products");
-    setItems(data.data);
+    const brand = searchParams.get("brand");
+    const category = searchParams.get("category");
+    const data = await getProductData({ brand, category });
+    dispatch({ type: "getProducts", action: data });
+    setItems(data);
   };
 
   useEffect(() => {
     getData();
-  }, []);
-
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  }, [products]);
 
   return (
     <Grid sx={{ display: "flex" }} container>
       <Grid container>
-        <button onClick={() => console.log(items)}></button>
+        <button onClick={() => console.log(items)}>show items</button>
+        <button onClick={() => console.log(products)}>show products</button>
         <Grid item xs={4}></Grid>
         <Grid item xs={4}>
-        {isMobile ? <Drawer /> : <Sidebar />}
+          <Drawer />
         </Grid>
         <Grid item xs={4}></Grid>
       </Grid>
