@@ -80,33 +80,48 @@ const sidebar = ({ category, setCategory, setBrand, brand, onSubmit }: any) => {
           defaultValue=""
         >
           <FormControlLabel
-            value="Men"
             control={
               <Checkbox
-                onChange={() => {
-                  setCategory({ ...category, Men: !brand.Men });
+                checked={category.Men}
+                name="Men"
+                onChange={(e) => {
+                  setCategory({
+                    Men: e.target.checked,
+                    Women: false,
+                    Children: false,
+                  });
                 }}
               />
             }
             label="Men"
           />
           <FormControlLabel
-            value="Women"
             control={
               <Checkbox
-                onChange={() => {
-                  setCategory({ ...category, women: !brand.Women });
+                checked={category.Women}
+                name="Women"
+                onChange={(e) => {
+                  setCategory({
+                    Men: false,
+                    Women: e.target.checked,
+                    Children: false,
+                  });
                 }}
               />
             }
             label="Women"
           />
           <FormControlLabel
-            value="children"
             control={
               <Checkbox
-                onChange={() => {
-                  setCategory({ ...category, children: !brand.Children });
+                checked={category.Children}
+                name="Children"
+                onChange={(e) => {
+                  setCategory({
+                    Men: false,
+                    Women: false,
+                    Children: e.target.checked,
+                  });
                 }}
               />
             }

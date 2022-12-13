@@ -2,7 +2,7 @@
 import { Product } from "../../../database/models/product";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-const userHandler = async (req: NextApiRequest, res: NextApiResponse) => {
+const productHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "GET") {
     const products = await Product.findAll({});
     return res.status(200).json(products);
@@ -24,4 +24,4 @@ const userHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-export default userHandler;
+export default productHandler;
