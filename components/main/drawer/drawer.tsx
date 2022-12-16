@@ -41,8 +41,6 @@ function TemporaryDrawer() {
     Reebok: false,
   });
 
-  const handleChange = (e: any) => {};
-
   const handleSubmit = (e: any) => {
     e.preventDefault();
   };

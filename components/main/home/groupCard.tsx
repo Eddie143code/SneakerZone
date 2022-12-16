@@ -10,15 +10,19 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 
-const brandCard = ({ image, text }: any) => {
+const brandCard = ({ image, text, group }: any) => {
   return (
-    <Link href={`/products`}>
+    <Link href={`/products?${group}=${text.toLowerCase()}`}>
       <Card>
         <Box>
           <Typography>{text}</Typography>
         </Box>
         <Box>
-          <Image alt="1" src={image} style={{ width: "70%", height: "14vh" }} />
+          <Image
+            alt={`${text}`}
+            src={image}
+            style={{ width: "70%", height: "14vh" }}
+          />
         </Box>
       </Card>
     </Link>
