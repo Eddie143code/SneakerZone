@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Drawer from "../../components/main/drawer/drawerAdmin";
+import Drawer from "../../components/admin/drawerAdmin";
 import {
   Grid,
   Typography,
@@ -7,12 +7,16 @@ import {
   AppBar,
   Toolbar,
   IconButton,
+  Stack,
+  Button,
+  Input,
 } from "@mui/material";
 import Image from "next/image";
 import Navbar from "../../components/admin/navbar";
 import axios from "axios";
 import CLOUDINARY from "../../env/cloudinary";
 import { postImage, postProduct } from "../../store/functions";
+import { padding } from "@mui/system";
 
 const drawerWidth = 200;
 
@@ -27,6 +31,8 @@ const upload = () => {
   const [brand, setBrand] = useState<any>("");
   const [image, setImage] = useState<any>("");
   const [imageSent, setImageSent] = useState<any>("");
+  const [category, setCategory] = useState<any>("");
+  const [price, setPrice] = useState<any>("");
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -50,7 +56,9 @@ const upload = () => {
     const post: any = await postProduct({
       name: name,
       brand: brand,
+      category: category,
       image: image,
+      price: price,
     });
   };
 
@@ -79,35 +87,59 @@ const upload = () => {
         >
           <Toolbar />
           <Typography paragraph>THIS IS THE UPLOAD PAGE</Typography>
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="myfile">Select a file:</label>
-            <input type="file" id="myfile" name="file" />
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <input
-              type="text"
-              value={brand}
-              onChange={(e) => setBrand(e.target.value)}
-            />
-            <input type="submit" />
-          </form>
-          <div>
-            <button onClick={handleClick}>fetch image</button>
-          </div>
-          <div>
-            {image && (
-              <Image
-                loader={() => image}
-                alt="p"
-                src={image}
-                width={200}
-                height={100}
-              />
-            )}
-          </div>
+          <Stack spacing={10}>
+            <form onSubmit={handleSubmit}>
+              <Box style={{ paddingTop: "4%" }}>
+                <label htmlFor="myfile">Select a file:</label>
+                <Input disableUnderline type="file" id="myfile" name="file" />
+              </Box>
+              <Box style={{ paddingTop: "4%" }}>
+                <label htmlFor="name">Name: </label>
+                <input
+                  id="name"
+                  style={{ marginLeft: "6.5%", height: "10%", width: "50%" }}
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </Box>
+              <Box style={{ paddingTop: "4%" }}>
+                <label htmlFor="brand">Brand: </label>
+                <input
+                  style={{ marginLeft: "6.5%", height: "10%", width: "50%" }}
+                  name="brand"
+                  type="text"
+                  value={brand}
+                  onChange={(e) => setBrand(e.target.value)}
+                />
+              </Box>
+              <Box style={{ paddingTop: "4%" }}>
+                <label htmlFor="category">Category: </label>
+                <input
+                  style={{ marginLeft: "0.5%", height: "10%", width: "50%" }}
+                  name="category"
+                  type="text"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                />
+              </Box>
+              <Box style={{ paddingTop: "4%" }}>
+                <label htmlFor="price">Price: </label>
+                <input
+                  style={{ marginLeft: "7%", height: "10%", width: "50%" }}
+                  name="price"
+                  type="text"
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
+                />
+              </Box>
+              <Box style={{ paddingTop: "6%" }}>
+                <Button variant="contained" type="submit">
+                  Submit
+                </Button>
+              </Box>
+            </form>
+          </Stack>
         </Box>
       </Box>
     </Grid>

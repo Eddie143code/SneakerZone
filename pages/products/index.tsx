@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Link from "next/link";
 import { Grid } from "@mui/material";
@@ -25,13 +25,13 @@ const productlist = () => {
     const brand = searchParams.get("brand");
     const category = searchParams.get("category");
     const data = await getProductData({ brand, category });
-    dispatch({ type: "getProducts", action: data });
+    dispatch({ type: "getProducts", payload: data });
     setItems(data);
   };
 
   useEffect(() => {
     getData();
-  }, [products]);
+  }, []);
 
   return (
     <Grid sx={{ display: "flex" }} container>

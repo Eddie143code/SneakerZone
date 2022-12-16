@@ -34,11 +34,11 @@ export default function Home() {
       {/* Navbar  */}
 
       <Grid container>
-        <Grid item xs={0} lg={3}></Grid>
-        <Grid item xs={12} lg={6} style={{ height: "40vh", marginTop: "10%" }}>
+        <Grid item xs={0} lg={3.5}></Grid>
+        <Grid item xs={12} lg={5} style={{ height: "40vh", marginTop: "8%" }}>
           <Carousel />
         </Grid>
-        <Grid item xs={0} lg={3}></Grid>
+        <Grid item xs={0} lg={3.5}></Grid>
       </Grid>
 
       {/* Cards */}

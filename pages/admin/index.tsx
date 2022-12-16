@@ -1,5 +1,5 @@
 import React from "react";
-import Drawer from "../../components/main/drawer/drawerAdmin";
+import Drawer from "../../components/admin/drawerAdmin";
 import {
   Grid,
   Typography,

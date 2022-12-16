@@ -22,7 +22,7 @@ const navbar = ({ drawerWidth, handleDrawerToggle }: any) => {
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" noWrap component="div">
-          Responsive drawer
+          Admin Dashboard
         </Typography>
       </Toolbar>
     </AppBar>

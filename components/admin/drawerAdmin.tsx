@@ -34,6 +34,10 @@ export default function ResponsiveDrawer(
   props: Props,
   { mobileOpen, handleDrawerToggle }: any
 ) {
+  const handleClick = (text: any) => {
+    console.log(e);
+  };
+
   const { window } = props;
 
   const router = useRouter();
@@ -43,13 +47,17 @@ export default function ResponsiveDrawer(
       <Toolbar />
       <Divider />
       <List>
-        {["Home", "Upload Item"].map((text, index) => (
+        {["Home", "Upload Item", "Products"].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton
               onClick={() => {
-                text === "Home"
-                  ? router.push("/admin")
-                  : router.push("/admin/upload");
+                if (text === "Home") {
+                  router.push("/admin");
+                } else if (text === "Upload Item") {
+                  router.push("/admin/upload");
+                } else if (text === "Products") {
+                  router.push("/admin/products");
+                }
               }}
             >
               <ListItemText primary={text} />
