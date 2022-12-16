@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Link from "next/link";
-import { Grid } from "@mui/material";
+import { Grid, Stack, Box, Button, Typography } from "@mui/material";
 import Drawer from "../../components/main/drawer/drawer";
 import axios from "axios";
 import Image from "next/image";
@@ -31,13 +31,11 @@ const productlist = () => {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [searchParams]);
 
   return (
     <Grid sx={{ display: "flex" }} container>
       <Grid container>
-        <button onClick={() => console.log(items)}>show items</button>
-        <button onClick={() => console.log(products)}>show products</button>
         <Grid item xs={4}></Grid>
         <Grid item xs={4}>
           <Drawer />
@@ -51,13 +49,17 @@ const productlist = () => {
               key={i}
               container
               style={{
-                border: "1px solid black",
-                height: "30vh",
+                height: "20vh",
                 width: "100vw",
               }}
             >
-              <Grid item xs={1}></Grid>
-              <Grid item xs={6}>
+              <Grid item xs={1} lg={3}></Grid>
+              <Grid
+                item
+                xs={6}
+                lg={3}
+                style={{ marginTop: "5%", borderBottom: "1px solid black" }}
+              >
                 <Image
                   loader={() => item.image}
                   alt={i}
@@ -66,10 +68,39 @@ const productlist = () => {
                   height={100}
                 />
               </Grid>
-              <Grid item xs={4}>
-                {item.name}
-                <Grid item xs={1}></Grid>
+              <Grid
+                item
+                xs={4}
+                lg={2}
+                style={{
+                  marginTop: "5%",
+
+                  borderBottom: "1px solid black",
+                }}
+              >
+                <Stack direction="column" style={{ marginLeft: "5%" }}>
+                  <Box>{item.name}</Box>
+                  <Box>{item.brand}</Box>
+                  <Box>{item.category}</Box>
+                  <Box>R {item.price}</Box>
+                  <Button
+                    href={`/products/product?item=${item.id}`}
+                    variant="contained"
+                    style={{ width: "50%" }}
+                  >
+                    <Typography style={{ fontSize: "0.8em" }}>
+                      View Product
+                    </Typography>
+                  </Button>
+                </Stack>
+                <Grid item xs={1} lg={4}></Grid>
               </Grid>
+              <Grid
+                item
+                lg={1}
+                style={{ marginTop: "5%", borderBottom: "1px solid black" }}
+              ></Grid>
+              <Grid item lg={4}></Grid>
             </Grid>
           );
         })}

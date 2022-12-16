@@ -66,3 +66,17 @@ export const deleteProduct = async (product: any) => {
   const items = data.data;
   return items;
 };
+
+export const getOneProduct = async (product: any) => {
+  const { id } = product;
+
+  const data = await axios.get("/api/products");
+
+  const oneProduct = data.data.find((item: any) => {
+    if (item.id == id) {
+      return item;
+    }
+  });
+
+  return oneProduct;
+};

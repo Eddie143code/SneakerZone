@@ -1,28 +1,30 @@
 import * as React from "react";
 import { useState } from "react";
-import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Radio from "@mui/material/Radio";
-import Checkbox from "@mui/material/Checkbox";
-import { FormGroup } from "@mui/material";
+import {
+  Box,
+  Drawer,
+  Button,
+  List,
+  Divider,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  FormControl,
+  FormLabel,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+  Checkbox,
+  FormGroup,
+} from "@mui/material";
 
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 import Sidebar from "../sidebar/sidebar";
+
+import { useRouter } from "next/router";
 
 type Anchor = "top" | "left" | "bottom" | "right";
 
@@ -41,8 +43,39 @@ function TemporaryDrawer() {
     Reebok: false,
   });
 
+  const router = useRouter();
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
+    console.log("in handlesubmit");
+    let brandChecked: any;
+    let categoryChecked: any = false;
+
+    const keys = Object.keys(brand);
+    const values = Object.values(brand);
+
+    values.forEach((item, index) => {
+      if (item) {
+        brandChecked = keys[index].toLowerCase();
+      }
+    });
+
+    console.log(keys);
+    console.log(values);
+    if (brandChecked && !categoryChecked) {
+      router.push(`/products?brand=${brandChecked}`);
+      return;
+    } else if (!brandChecked && categoryChecked) {
+      router.push(`/products?category=${categoryChecked}`);
+      return;
+    } else if (brandChecked && categoryChecked) {
+      router.push(
+        `/products?brand=${brandChecked}&category=${categoryChecked}`
+      );
+      return;
+    } else {
+      return;
+    }
   };
 
   // DRAWER LOGIC:
@@ -194,8 +227,6 @@ function TemporaryDrawer() {
     <div>
       {(["left"] as const).map((anchor) => (
         <React.Fragment key={anchor}>
-          <button onClick={() => console.log(category)}>show category</button>
-          <button onClick={() => console.log(brand)}>show brand</button>
           {isMobile ? (
             <>
               <Button onClick={toggleDrawer(anchor, true)}>filter</Button>

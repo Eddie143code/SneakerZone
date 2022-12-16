@@ -3,43 +3,39 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Link from "next/link";
 import { Grid } from "@mui/material";
 import Drawer from "../../../components/main/drawer/drawer";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { useProductDispatch } from "../../../store/reducers/products";
+import { useProducts } from "../../../store/reducers/products";
+import { getOneProduct } from "../../../store/functions";
 
 const productlist = () => {
-  const items = [1, 2, 3, 4, 5];
+  const [singleProduct, setSingleProduct] = useState("");
+  const searchParams = useSearchParams();
 
-  useEffect(() => {}, []);
+  const dispatch = useProductDispatch();
+
+  const getProduct = async () => {
+    const oneProduct = searchParams.get("item");
+    console.log(oneProduct);
+    const productTemp = await getOneProduct({ id: oneProduct });
+    setSingleProduct(productTemp);
+  };
+
+  useEffect(() => {
+    getProduct();
+  }, [searchParams]);
 
   return (
     <Grid container>
       <Grid container>
-        <Grid item xs={1}></Grid>
-        <Grid item xs={2}>
-          <Drawer />
+        <Grid item xs={4}></Grid>
+        <Grid item xs={4}>
+          <button onClick={() => console.log(singleProduct)}></button>
+          {singleProduct && singleProduct.name}
         </Grid>
-        <Grid item xs={9}></Grid>
+        <Grid item xs={4}></Grid>
       </Grid>
-      {items.map((item: any, i: any) => {
-        return (
-          <Grid
-            key={i}
-            container
-            style={{
-              border: "1px solid black",
-              height: "30vh",
-              width: "100vw",
-            }}
-          >
-            <Grid item xs={1}></Grid>
-            <Grid item xs={6}>
-              box
-            </Grid>
-            <Grid item xs={4}>
-              Name<Grid item xs={1}></Grid>
-            </Grid>
-          </Grid>
-        );
-      })}
-      <Drawer />
     </Grid>
   );
 };

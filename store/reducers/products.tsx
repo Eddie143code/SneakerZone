@@ -31,15 +31,13 @@ const productReducer = (products: any, action: any) => {
       return products;
     }
     case "getProducts": {
-      console.log(products);
       products.products = action.payload.map((item: any) => {
         return item;
       });
-      console.log(products);
+
       return products;
     }
     case "deleteProduct": {
-      console.log(action.payload);
       const productList = action.payload.products.products;
       const id = action.payload.data;
       products.products = productList.filter((item: any) => {
