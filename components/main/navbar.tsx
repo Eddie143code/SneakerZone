@@ -40,7 +40,7 @@ const navbar = () => {
 
           {isMobile ? (
             <>
-              <IconButton>
+              <IconButton href="/cart">
                 <ShoppingCartIcon />
               </IconButton>
               <IconButton

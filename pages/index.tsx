@@ -77,7 +77,7 @@ export default function Home() {
         <Grid item xs={5.75} lg={3} style={{ textAlign: "center" }}>
           <GroupCard image={Reebok_Carousel} text="Reebok" group={"brand"} />
         </Grid>
-        <Grid item sm={0} lg={3}></Grid>
+        <Grid item xs={0} lg={3}></Grid>
       </Grid>
 
       {/* Category Cards */}
@@ -91,7 +91,7 @@ export default function Home() {
       </Grid>
 
       <Grid container style={{ height: "20vh", marginTop: "8%" }}>
-        <Grid item sm={0} lg={3}></Grid>
+        <Grid item xs={0} lg={3}></Grid>
         <Grid item xs={5.75} lg={3} style={{ textAlign: "center" }}>
           <GroupCard
             image={Converse_Carousel}
