@@ -5,8 +5,6 @@ import { Grid, Stack, Typography, Box, Button } from "@mui/material";
 import Drawer from "../../../components/main/drawer/drawer";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
-import { useProductDispatch } from "../../../store/context/products/reducer";
-import { useProducts } from "../../../store/context/products/reducer";
 import { getOneProduct } from "../../../store/functions";
 import Image from "next/image";
 
@@ -14,8 +12,7 @@ const oneProduct = () => {
   const [singleProduct, setSingleProduct] = useState<any>();
   const searchParams = useSearchParams();
 
-  const dispatch: any = useProductDispatch();
-  const products: any = useProducts();
+
 
   const getProduct = async () => {
     const oneProduct = searchParams.get("item");
@@ -28,7 +25,7 @@ const oneProduct = () => {
   }, [searchParams]);
 
   const handleCart = () => {
-    dispatch({ type: "getOneProduct", payload: singleProduct });
+    
   };
 
   return (

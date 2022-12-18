@@ -4,23 +4,23 @@ import { Container } from "@mui/material";
 import Navbar from "../components/main/navbar";
 import Footer from "../components/main/footer";
 import { useState } from "react";
-import ProductsProvider from "../store/context/products/reducer";
-import { useProducts } from "../store/context/products/reducer";
+import ProductsProvider from "../store/context/products/state";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const products = useProducts;
+
   if (Component.getLayout) {
     return Component.getLayout(
-      <ProductsProvider products={products}>
+      <ProductsProvider>
         <Component {...pageProps} />
       </ProductsProvider>
     );
   }
   return (
-    <ProductsProvider>
-      <Navbar />
+<ProductsProvider>
+  <Navbar />
       <Component {...pageProps} />
-      {/*  <Footer />*/}
-    </ProductsProvider>
+      {/*  <Footer />*/}</ProductsProvider>
+      
+
   );
 }

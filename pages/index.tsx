@@ -10,7 +10,7 @@ import {
   Typography,
   Stack,
 } from "@mui/material";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import {
   Nike_Carousel,
   Adidas_Carousel,
@@ -27,12 +27,17 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Button from "@mui/material/Button";
 
+import ProductContext from "../store/context/products/context"
+
 export default function Home() {
   const router = useRouter();
+
+  const {allProducts } : any = useContext(ProductContext)
 
   return (
     <Grid container>
       {/* Navbar  */}
+      <button onClick={()=> console.log(allProducts)}></button>
 
       <Grid container>
         <Grid item xs={0} lg={3.5}></Grid>

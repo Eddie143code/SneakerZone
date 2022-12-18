@@ -1,41 +1,42 @@
 import { useReducer } from "react";
-import Context from "./context";
-import reducer from "./reducer";
+import ProductContext from "./context";
+import productReducer from "./reducer";
 import {
   upload,
   getProducts,
   deleteProduct,
-  getOneProduct,
+  addProductToCart,
   getCart,
 } from "./actions";
 
-function ProductsProvider({ children }: any) {
+const ProductsProvider = (props: any) =>{
   const initialState: any = {
     products: [],
     cart: [],
   };
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(productReducer, initialState);
 
   const uploadItem = (data: any) => {
     dispatch({ type: upload, payload: data });
   };
-  const getItems = () => {
-    dispatch({ type: getProducts });
+  const getItems = (data : any) => {
+    dispatch({ type: getProducts, payload: data });
   };
   const deleteItem = (data: any) => {
     dispatch({ type: deleteProduct, payload: data });
   };
   const addtoCart = (data: any) => {
-    dispatch({ type: getOneProduct, payload: data });
+    dispatch({ type: addProductToCart, payload: data });
   };
   const fetchCart = (data: any) => {
     dispatch({ type: getCart, payload: data });
   };
 
   return (
-    <Context.Provider
+    <ProductContext.Provider
       value={{
-        product: state.product,
+        allProducts: state.products,
+        cart: state.cart,
         uploadItem,
         getItems,
         deleteItem,
@@ -43,8 +44,8 @@ function ProductsProvider({ children }: any) {
         fetchCart,
       }}
     >
-      {children}
-    </Context.Provider>
+      {props.children}
+    </ProductContext.Provider>
   );
 }
 

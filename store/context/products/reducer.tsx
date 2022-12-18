@@ -1,39 +1,42 @@
-import { createContext, useContext, useReducer } from "react";
+
 import {
   upload,
   getProducts,
   deleteProduct,
-  getOneProduct,
+  addProductToCart,
   getCart,
 } from "./actions";
 
-const productReducer = (product: any, action: any) => {
+const productReducer = (state: any, action: any) => {
   switch (action.type) {
     case upload: {
-      return product;
+      return state;
     }
     case getProducts: {
-      product.products = action.payload.map((item: any) => {
+      console.log('in getProducts')
+      const allProducts = action.payload.map((item: any) => {
         return item;
       });
 
-      return product;
+      console.log(allProducts)
+
+      return {...state, products: allProducts};
     }
     case deleteProduct: {
       const productList = action.payload.products.products;
       const id = action.payload.data;
-      product.products = productList.filter((item: any) => {
+      const allProducts = productList.filter((item: any) => {
         return item.id !== id;
       });
-      return product;
+      return {...state, allProducts};
     }
-    case getOneProduct: {
+    case addProductToCart: {
       const singleProduct = action.payload;
-      const cart = [...product.cart, singleProduct];
-      return { ...product, cart: cart };
+      const cart = [...state.cart, singleProduct];
+      return { ...state, cart: cart };
     }
     case getCart: {
-      return product;
+      return state;
     }
   }
 };

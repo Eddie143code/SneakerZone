@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Link from "next/link";
 import { Grid, Stack, Box, Button, Typography } from "@mui/material";
@@ -8,24 +8,22 @@ import Image from "next/image";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useSearchParams } from "next/navigation";
-import { useProductDispatch } from "../../store/context/products/reducer";
-import { useProducts } from "../../store/context/products/reducer";
 import { getProductData } from "../../store/functions";
+import ProductContext from "../../store/context/products/context"
 
 const productlist = () => {
   const [items, setItems] = useState<any>("");
 
-  const products = useProducts();
+  const {getItems,allProducts } : any = useContext(ProductContext)
 
   const searchParams = useSearchParams();
 
-  const dispatch: any = useProductDispatch();
 
   const getData = async () => {
     const brand = searchParams.get("brand");
     const category = searchParams.get("category");
     const data = await getProductData({ brand, category });
-    dispatch({ type: "getProducts", payload: data });
+    getItems(data)
     setItems(data);
   };
 
@@ -36,6 +34,7 @@ const productlist = () => {
   return (
     <Grid sx={{ display: "flex" }} container>
       <Grid container>
+        <button onClick={()=> console.log(allProducts)}></button>
         <Grid item xs={4}></Grid>
         <Grid item xs={4}>
           <Drawer />
