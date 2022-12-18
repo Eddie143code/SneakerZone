@@ -4,8 +4,8 @@ import { Container } from "@mui/material";
 import Navbar from "../components/main/navbar";
 import Footer from "../components/main/footer";
 import { useState } from "react";
-import ProductsProvider from "../store/reducers/products";
-import { useProducts } from "../store/reducers/products";
+import ProductsProvider from "../store/context/products/reducer";
+import { useProducts } from "../store/context/products/reducer";
 
 export default function App({ Component, pageProps }: AppProps) {
   const products = useProducts;
@@ -17,7 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
     );
   }
   return (
-    <ProductsProvider products={products}>
+    <ProductsProvider>
       <Navbar />
       <Component {...pageProps} />
       {/*  <Footer />*/}

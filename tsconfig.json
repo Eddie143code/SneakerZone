@@ -19,7 +19,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "store/reducers/productsts"
+    "store/context/productsts"
   ],
   "exclude": ["node_modules"]
 }

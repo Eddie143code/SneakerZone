@@ -8,8 +8,8 @@ import Image from "next/image";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useSearchParams } from "next/navigation";
-import { useProductDispatch } from "../../store/reducers/products";
-import { useProducts } from "../../store/reducers/products";
+import { useProductDispatch } from "../../store/context/products/reducer";
+import { useProducts } from "../../store/context/products/reducer";
 import { getProductData } from "../../store/functions";
 
 const productlist = () => {

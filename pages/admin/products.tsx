@@ -16,7 +16,10 @@ import Image from "next/image";
 import Navbar from "../../components/admin/navbar";
 import axios from "axios";
 import CLOUDINARY from "../../env/cloudinary";
-import { useProductDispatch, useProducts } from "../../store/reducers/products";
+import {
+  useProductDispatch,
+  useProducts,
+} from "../../store/context/products/reducer";
 import { getProductData, deleteProduct } from "../../store/functions";
 
 const drawerWidth = 200;

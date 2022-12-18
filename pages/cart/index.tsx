@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Grid, Stack, Box, Typography } from "@mui/material";
 import Image from "next/image";
-import { useProducts, useProductDispatch } from "../../store/reducers/products";
+import {
+  useProducts,
+  useProductDispatch,
+} from "../../store/context/products/reducer";
 
 const cart = () => {
   const [cartItems, setCartItems] = useState<any>();

@@ -5,8 +5,8 @@ import { Grid, Stack, Typography, Box, Button } from "@mui/material";
 import Drawer from "../../../components/main/drawer/drawer";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
-import { useProductDispatch } from "../../../store/reducers/products";
-import { useProducts } from "../../../store/reducers/products";
+import { useProductDispatch } from "../../../store/context/products/reducer";
+import { useProducts } from "../../../store/context/products/reducer";
 import { getOneProduct } from "../../../store/functions";
 import Image from "next/image";
 
