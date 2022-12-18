@@ -1,18 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Grid, Stack, Box, Typography } from "@mui/material";
 import Image from "next/image";
-import {
-  useProducts,
-  useProductDispatch,
-} from "../../store/context/products/reducer";
+import ProductContext from "../../store/context/products/context";
 
 const cart = () => {
   const [cartItems, setCartItems] = useState<any>();
-
-  const product: any = useProducts();
-  const dispatch: any = useProductDispatch();
+  const { fetchCart, cart }: any = useContext(ProductContext);
   const tempo = async () => {
-    const temp = await dispatch({ type: "getCart" });
+    const temp = fetchCart();
     setCartItems(temp);
   };
   useEffect(() => {
@@ -21,7 +16,8 @@ const cart = () => {
 
   return (
     <Grid container>
-      <button onClick={() => console.log(product)}></button>
+      <button onClick={() => console.log(cartItems)}></button>
+      <button onClick={() => console.log(cart)}></button>
       <Grid item xs={12} style={{ height: "20vh" }}></Grid>
       {cartItems &&
         cartItems.map((item: any) => {

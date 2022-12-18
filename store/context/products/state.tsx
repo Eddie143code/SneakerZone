@@ -5,11 +5,12 @@ import {
   upload,
   getProducts,
   deleteProduct,
+  getAllProducts,
   addProductToCart,
   getCart,
 } from "./actions";
 
-const ProductsProvider = (props: any) =>{
+const ProductsProvider = (props: any) => {
   const initialState: any = {
     products: [],
     cart: [],
@@ -19,7 +20,7 @@ const ProductsProvider = (props: any) =>{
   const uploadItem = (data: any) => {
     dispatch({ type: upload, payload: data });
   };
-  const getItems = (data : any) => {
+  const getItems = (data: any) => {
     dispatch({ type: getProducts, payload: data });
   };
   const deleteItem = (data: any) => {
@@ -28,8 +29,11 @@ const ProductsProvider = (props: any) =>{
   const addtoCart = (data: any) => {
     dispatch({ type: addProductToCart, payload: data });
   };
-  const fetchCart = (data: any) => {
-    dispatch({ type: getCart, payload: data });
+  const fetchCart = () => {
+    dispatch({ type: getCart, payload: null });
+  };
+  const fetchAllProducts = () => {
+    dispatch({ type: getAllProducts, payload: null });
   };
 
   return (
@@ -42,11 +46,12 @@ const ProductsProvider = (props: any) =>{
         deleteItem,
         addtoCart,
         fetchCart,
+        fetchAllProducts,
       }}
     >
       {props.children}
     </ProductContext.Provider>
   );
-}
+};
 
 export default ProductsProvider;

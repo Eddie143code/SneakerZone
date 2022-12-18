@@ -1,8 +1,8 @@
-
 import {
   upload,
   getProducts,
   deleteProduct,
+  getAllProducts,
   addProductToCart,
   getCart,
 } from "./actions";
@@ -13,14 +13,10 @@ const productReducer = (state: any, action: any) => {
       return state;
     }
     case getProducts: {
-      console.log('in getProducts')
       const allProducts = action.payload.map((item: any) => {
         return item;
       });
-
-      console.log(allProducts)
-
-      return {...state, products: allProducts};
+      return { ...state, products: allProducts };
     }
     case deleteProduct: {
       const productList = action.payload.products.products;
@@ -28,7 +24,11 @@ const productReducer = (state: any, action: any) => {
       const allProducts = productList.filter((item: any) => {
         return item.id !== id;
       });
-      return {...state, allProducts};
+      return { ...state, allProducts };
+    }
+    case getAllProducts: {
+      const allProducts = action.payload;
+      return { ...state, products: allProducts };
     }
     case addProductToCart: {
       const singleProduct = action.payload;
@@ -36,8 +36,11 @@ const productReducer = (state: any, action: any) => {
       return { ...state, cart: cart };
     }
     case getCart: {
-      return state;
+      const newState = state;
+      return { newState };
     }
+    default:
+      return state;
   }
 };
 

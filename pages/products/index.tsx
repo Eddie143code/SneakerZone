@@ -9,40 +9,48 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useSearchParams } from "next/navigation";
 import { getProductData } from "../../store/functions";
-import ProductContext from "../../store/context/products/context"
+import ProductContext from "../../store/context/products/context";
 
 const productlist = () => {
-  const [items, setItems] = useState<any>("");
+  const [items, setItems] = useState<any>();
 
-  const {getItems,allProducts } : any = useContext(ProductContext)
+  const { getItems, allProducts, addtoCart, cart }: any =
+    useContext(ProductContext);
 
   const searchParams = useSearchParams();
-
 
   const getData = async () => {
     const brand = searchParams.get("brand");
     const category = searchParams.get("category");
     const data = await getProductData({ brand, category });
-    getItems(data)
-    setItems(data);
+    getItems(data);
   };
 
   useEffect(() => {
     getData();
   }, [searchParams]);
 
+  const handleCart = (product: any) => {
+    const singleProduct = allProducts.find((item: any) => {
+      return item.id == product;
+    });
+    addtoCart(singleProduct);
+    localStorage.setItem("cart", singleProduct);
+  };
+
   return (
     <Grid sx={{ display: "flex" }} container>
       <Grid container>
-        <button onClick={()=> console.log(allProducts)}></button>
+        <button onClick={() => console.log(allProducts)}>allProducts</button>
+        <button onClick={() => console.log(cart)}>cart</button>
         <Grid item xs={4}></Grid>
         <Grid item xs={4}>
           <Drawer />
         </Grid>
         <Grid item xs={4}></Grid>
       </Grid>
-      {items &&
-        items.map((item: any, i: any) => {
+      {allProducts &&
+        allProducts.map((item: any, i: any) => {
           return (
             <Grid
               key={i}
@@ -90,6 +98,13 @@ const productlist = () => {
                     <Typography style={{ fontSize: "0.8em" }}>
                       View Product
                     </Typography>
+                  </Button>
+                  <Button
+                    onClick={() => handleCart(item.id)}
+                    variant="contained"
+                    style={{ marginTop: "5%" }}
+                  >
+                    Add to cart
                   </Button>
                 </Stack>
                 <Grid item xs={1} lg={4}></Grid>

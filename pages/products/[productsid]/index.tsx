@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from "react";
+import React, { use, useEffect, useState, useContext } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Link from "next/link";
 import { Grid, Stack, Typography, Box, Button } from "@mui/material";
@@ -7,30 +7,42 @@ import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { getOneProduct } from "../../../store/functions";
 import Image from "next/image";
+import ProductContext from "../../../store/context/products/context";
+import { getProductData } from "../../../store/functions";
 
 const oneProduct = () => {
   const [singleProduct, setSingleProduct] = useState<any>();
+  const { allProducts, fetchAllProducts, addtoCart, cart }: any =
+    useContext(ProductContext);
   const searchParams = useSearchParams();
-
-
 
   const getProduct = async () => {
     const oneProduct = searchParams.get("item");
-    const productTemp = await getOneProduct({ id: oneProduct });
-    setSingleProduct(productTemp);
+
+    const data = await getProductData({ brand: null, category: null });
+    console.log(data);
+    fetchAllProducts(data);
+    const productFilter = data.find((item: any) => {
+      return item.id == oneProduct;
+    });
+
+    console.log(productFilter);
+    setSingleProduct(productFilter);
   };
 
   useEffect(() => {
     getProduct();
-  }, [searchParams]);
+  }, [searchParams, allProducts]);
 
   const handleCart = () => {
-    
+    addtoCart(singleProduct);
   };
 
   return (
     <Grid container>
-      <button onClick={() => console.log(products)}></button>
+      <button onClick={() => console.log(singleProduct)}>single</button>
+      <button onClick={() => console.log(allProducts)}>all</button>
+      <button onClick={() => console.log(cart)}>cart</button>
       <Grid container style={{ height: "10vh" }}></Grid>
       <Grid container>
         {singleProduct && (

@@ -27,17 +27,18 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Button from "@mui/material/Button";
 
-import ProductContext from "../store/context/products/context"
+import ProductContext from "../store/context/products/context";
 
 export default function Home() {
   const router = useRouter();
 
-  const {allProducts } : any = useContext(ProductContext)
+  const { allProducts, cart }: any = useContext(ProductContext);
 
   return (
     <Grid container>
       {/* Navbar  */}
-      <button onClick={()=> console.log(allProducts)}></button>
+      <button onClick={() => console.log(allProducts)}></button>
+      <button onClick={() => console.log(cart)}></button>
 
       <Grid container>
         <Grid item xs={0} lg={3.5}></Grid>

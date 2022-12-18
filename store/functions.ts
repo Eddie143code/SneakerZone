@@ -37,7 +37,6 @@ export const getProductData = async (product: any) => {
     if (!data.data) {
       return items;
     }
-
     return (items = data.data);
   } else if (brand && !category) {
     filter = data.data.filter((product: any) => {
