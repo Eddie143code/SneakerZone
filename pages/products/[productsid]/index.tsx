@@ -18,21 +18,17 @@ const oneProduct = () => {
 
   const getProduct = async () => {
     const oneProduct = searchParams.get("item");
+   // const productFilter = allProducts.find((item: any) => {
+   //   return item.id == oneProduct;
+   // });
 
-    const data = await getProductData({ brand: null, category: null });
-    console.log(data);
-    fetchAllProducts(data);
-    const productFilter = data.find((item: any) => {
-      return item.id == oneProduct;
-    });
-
-    console.log(productFilter);
-    setSingleProduct(productFilter);
+    //console.log(productFilter);
+    //setSingleProduct(productFilter);
   };
 
   useEffect(() => {
     getProduct();
-  }, [searchParams, allProducts]);
+  }, [singleProduct]);
 
   const handleCart = () => {
     addtoCart(singleProduct);

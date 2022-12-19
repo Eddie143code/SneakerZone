@@ -22,8 +22,8 @@ const productlist = () => {
   const getData = async () => {
     const brand = searchParams.get("brand");
     const category = searchParams.get("category");
-    const data = await getProductData({ brand, category });
-    getItems(data);
+    
+    getItems({brand, category});
   };
 
   useEffect(() => {
@@ -31,11 +31,12 @@ const productlist = () => {
   }, [searchParams]);
 
   const handleCart = (product: any) => {
-    const singleProduct = allProducts.find((item: any) => {
+    let singleProduct = allProducts.find((item: any) => {
       return item.id == product;
     });
+    singleProduct = {...singleProduct, quantity: 1}
     addtoCart(singleProduct);
-    localStorage.setItem("cart", singleProduct);
+
   };
 
   return (
@@ -56,6 +57,7 @@ const productlist = () => {
               key={i}
               container
               style={{
+                marginTop: "8%",
                 height: "20vh",
                 width: "100vw",
               }}
@@ -90,19 +92,20 @@ const productlist = () => {
                   <Box>{item.brand}</Box>
                   <Box>{item.category}</Box>
                   <Box>R {item.price}</Box>
-                  <Button
+                 {/* <Button
                     href={`/products/product?item=${item.id}`}
                     variant="contained"
                     style={{ width: "50%" }}
                   >
                     <Typography style={{ fontSize: "0.8em" }}>
                       View Product
-                    </Typography>
-                  </Button>
+                    </Typography> 
+                  </Button> */}
                   <Button
                     onClick={() => handleCart(item.id)}
                     variant="contained"
-                    style={{ marginTop: "5%" }}
+                    style={{ width: "50%"}}
+                    
                   >
                     Add to cart
                   </Button>

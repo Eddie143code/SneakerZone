@@ -4,3 +4,6 @@ export const deleteProduct = "deleteProduct";
 export const getAllProducts = "getAllProducts";
 export const addProductToCart = "addProductToCart";
 export const getCart = "getCart";
+export const increaseQuantity = "increaseQuantity"
+export const decreaseQuantity = "decreaseQuantity"
+export const getTotal = "getTotal"

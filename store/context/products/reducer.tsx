@@ -1,3 +1,4 @@
+import { isConstructorDeclaration } from "typescript";
 import {
   upload,
   getProducts,
@@ -5,6 +6,9 @@ import {
   getAllProducts,
   addProductToCart,
   getCart,
+  increaseQuantity,
+  decreaseQuantity,
+  getTotal,
 } from "./actions";
 
 const productReducer = (state: any, action: any) => {
@@ -15,8 +19,8 @@ const productReducer = (state: any, action: any) => {
     case getProducts: {
       const allProducts = action.payload.map((item: any) => {
         return item;
-      });
-      return { ...state, products: allProducts };
+      }) 
+      return { ...state, products: [...allProducts]};
     }
     case deleteProduct: {
       const productList = action.payload.products.products;
@@ -27,17 +31,28 @@ const productReducer = (state: any, action: any) => {
       return { ...state, allProducts };
     }
     case getAllProducts: {
-      const allProducts = action.payload;
-      return { ...state, products: allProducts };
+      return state 
     }
     case addProductToCart: {
-      const singleProduct = action.payload;
-      const cart = [...state.cart, singleProduct];
-      return { ...state, cart: cart };
+      const singleProduct = action.payload
+
+      return { ...state, cart: [...state.cart, singleProduct] };
     }
     case getCart: {
-      const newState = state;
-      return { newState };
+      
+      return state
+    }
+    
+    
+    case getTotal: {
+      const initialValue = 0;
+      const totalPrice = state.cart.reduce((cartTotal :any, cartItem: any)=> {
+        const {price} = cartItem
+        cartTotal += Number(price)
+        return cartTotal
+      }, initialValue)
+      console.log(totalPrice)
+      return {...state, total: totalPrice}
     }
     default:
       return state;
