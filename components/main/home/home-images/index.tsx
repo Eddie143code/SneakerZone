@@ -6,3 +6,6 @@ export { default as Nike_Logo } from "./Nike-Logo.png";
 export { default as Adidas_Logo } from "./Adidas_Logo.png";
 export { default as Converse_Logo } from "./Converse-Logo.png";
 export { default as Reebok_Logo } from "./Reebok-Logo.png";
+export { default as Man } from "./man.png";
+export { default as Woman } from "./woman.png";
+export { default as Child } from "./child.png";

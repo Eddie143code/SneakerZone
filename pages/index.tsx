@@ -20,6 +20,9 @@ import {
   Adidas_Logo,
   Converse_Logo,
   Reebok_Logo,
+  Woman,
+  Man,
+  Child,
 } from "../components/main/home/home-images/index";
 import Carousel from "../components/main/carousel/carouselComp";
 import GroupCard from "../components/main/home/groupCard";
@@ -61,11 +64,23 @@ export default function Home() {
       <Grid container style={{ height: "20vh", marginTop: "8%" }}>
         <Grid item sm={0} lg={3}></Grid>
         <Grid item xs={5.75} lg={3} style={{ textAlign: "center" }}>
-          <GroupCard image={Nike_Carousel} text="Nike" group={"brand"} />
+          <GroupCard
+            image={Nike_Carousel}
+            text="Nike"
+            group={"brand"}
+            width={"70%"}
+            height={"15vh"}
+          />
         </Grid>
         <Grid item xs={0.5} lg={0}></Grid>
         <Grid item xs={5.75} lg={3} style={{ textAlign: "center" }}>
-          <GroupCard image={Adidas_Carousel} text="Adidas" group={"brand"} />
+          <GroupCard
+            image={Adidas_Carousel}
+            text="Adidas"
+            group={"brand"}
+            width={"70%"}
+            height={"15vh"}
+          />
         </Grid>
         <Grid item sm={0} lg={3}></Grid>
       </Grid>
@@ -77,11 +92,19 @@ export default function Home() {
             image={Converse_Carousel}
             text="Converse"
             group={"brand"}
+            width={"70%"}
+            height={"15vh"}
           />
         </Grid>
         <Grid item xs={0.5} lg={0}></Grid>
         <Grid item xs={5.75} lg={3} style={{ textAlign: "center" }}>
-          <GroupCard image={Reebok_Carousel} text="Reebok" group={"brand"} />
+          <GroupCard
+            image={Reebok_Carousel}
+            text="Reebok"
+            group={"brand"}
+            width={"70%"}
+            height={"15vh"}
+          />
         </Grid>
         <Grid item xs={0} lg={3}></Grid>
       </Grid>
@@ -97,35 +120,38 @@ export default function Home() {
       </Grid>
 
       <Grid container style={{ height: "20vh", marginTop: "8%" }}>
-        <Grid item xs={0} lg={3}></Grid>
-        <Grid item xs={5.75} lg={3} style={{ textAlign: "center" }}>
+        <Grid item xs={2} lg={3}></Grid>
+        <Grid item xs={4} lg={3} style={{ textAlign: "center" }}>
           <GroupCard
-            image={Converse_Carousel}
+            image={Man}
             text={"Men"}
             group={"category"}
+            width={"30%"}
           />
         </Grid>
         <Grid item xs={0.5} lg={0}></Grid>
-        <Grid item xs={5.75} lg={3} style={{ textAlign: "center" }}>
+        <Grid item xs={4} lg={3} style={{ textAlign: "center" }}>
           <GroupCard
-            image={Reebok_Carousel}
+            image={Woman}
             text={"Women"}
             group={"category"}
+            width={"35%"}
           />
         </Grid>
-        <Grid item xs={0} lg={3}></Grid>
+        <Grid item xs={2} lg={3}></Grid>
       </Grid>
 
-      <Grid container style={{ height: "20vh", marginTop: "5%" }}>
-        <Grid item xs={3.25} lg={4.5}></Grid>
-        <Grid item xs={5.5} lg={3} style={{ textAlign: "center" }}>
+      <Grid container style={{ marginTop: "4%" }}>
+        <Grid item xs={4.5} lg={4.5}></Grid>
+        <Grid item xs={3} lg={3} style={{ textAlign: "center" }}>
           <GroupCard
-            image={Reebok_Carousel}
+            image={Child}
             text={"Children"}
             group={"category"}
+            width={"50%"}
           />
         </Grid>
-        <Grid item xs={3.25} lg={4.5}></Grid>
+        <Grid item xs={4.5} lg={4.5}></Grid>
       </Grid>
 
       {/* Logos */}

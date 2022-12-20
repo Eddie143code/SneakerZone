@@ -5,7 +5,6 @@ const aboutUs = () => {
     useContext(ProductContext);
   return (
     <div>
-      {" "}
       <button onClick={() => console.log(cart)}>cart</button>
     </div>
   );
