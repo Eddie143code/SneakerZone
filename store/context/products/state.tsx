@@ -10,9 +10,9 @@ import {
   getCart,
   increaseQuantity,
   decreaseQuantity,
-  getTotal
 } from "./actions";
-import { getProductData } from "../../functions";
+import { getProductData, deleteProductData, postImage, postProduct } from "../../functions";
+import { urlParamsObj } from "../../../types/types";
 
 const ProductsProvider = (props: any) => {
   const initialState: any = {
@@ -22,17 +22,23 @@ const ProductsProvider = (props: any) => {
   };
   const [state, dispatch] = useReducer(productReducer, initialState);
 
-  const uploadItem = (data: any) => {
+  const uploadItem = async (data: any) => {
+    await postImage
+    await postProduct
     dispatch({ type: upload, payload: data });
   };
 
-  const getItems = async ({brand, category}: any) => {
+  const getItems = async ({brand, category}:urlParamsObj ) => {
+    console.log(typeof brand )
+    console.log(typeof category )
     const data  = await getProductData({ brand, category });
     dispatch({ type: getProducts, payload: data });
   };
 
-  const deleteItem = (data: any) => {
-    dispatch({ type: deleteProduct, payload: data });
+  const deleteItem =async (data: any) => {
+    await deleteProductData(data)
+    const items = await getProductData({})
+    dispatch({ type: deleteProduct, payload: {data: data, items: items} });
   };
 
   const addtoCart = (data: any) => {

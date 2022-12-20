@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Drawer from "../../components/admin/drawerAdmin";
 import {
   Grid,
@@ -16,11 +16,7 @@ import Image from "next/image";
 import Navbar from "../../components/admin/navbar";
 import axios from "axios";
 import CLOUDINARY from "../../env/cloudinary";
-import {
-  useProductDispatch,
-  useProducts,
-} from "../../store/context/products/reducer";
-import { getProductData, deleteProduct } from "../../store/functions";
+import ProductContext from "../../store/context/products/context";
 
 const drawerWidth = 200;
 
@@ -33,29 +29,21 @@ const allProducts = () => {
 
   const [items, setItems] = useState<any>("");
 
-  const products: any = useProducts();
+  const {allProducts,getItems, deleteItem} : any = useContext(ProductContext)
 
-  const dispatch: any = useProductDispatch();
 
   const getData = async () => {
-    const data = await getProductData({});
-    await dispatch({ type: "getProducts", payload: data });
-
-    setItems(products);
+    const data = getItems({})
   };
 
   const deleteData = async (item: any) => {
-    const data = await deleteProduct({ id: item });
-    const newItems = await dispatch({
-      type: "deleteProduct",
-      payload: { products: products, data: data },
-    });
-    setItems(newItems);
+    const data = deleteItem(item)
+    setItems(data);
   };
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [items]);
 
   return (
     <Grid container>
@@ -80,8 +68,8 @@ const allProducts = () => {
           <Stack direction={{ xs: "column", lg: "row" }} spacing={2}>
             {/*  <button onClick={() => console.log(items)}></button>*/}
 
-            {products &&
-              products.products.map((item: any) => {
+            {allProducts &&
+              allProducts.map((item: any) => {
                 return (
                   <Box style={{ borderStyle: "solid", borderWidth: "0.1rem" }}>
                     <Image

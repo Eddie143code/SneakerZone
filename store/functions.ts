@@ -1,5 +1,6 @@
 import axios from "axios";
 import CLOUDINARY from "../env/cloudinary";
+import { urlParamsObj, productObj } from "../types/types";
 
 export const postImage = async (product: any) => {
   //const data = await axios.post("/api/products", product);
@@ -27,11 +28,11 @@ export const postProduct = async (product: any) => {
   return data;
 };
 
-export const getProductData = async (product: any) => {
+export const getProductData = async (product: urlParamsObj) => {
   const { brand, category } = product;
-  let items = null;
+  let items: productObj[] | null = null
   const data: any = await axios.get("/api/products");
-  let filter: any;
+  let filter: productObj[] | null= null
 
   if (!brand && !category) {
     if (!data.data) {
@@ -39,18 +40,18 @@ export const getProductData = async (product: any) => {
     }
     return (items = data.data);
   } else if (brand && !category) {
-    filter = data.data.filter((product: any) => {
+    filter = data.data.filter((product: productObj) => {
       return product.brand === brand;
     });
 
     return (items = filter);
   } else if (category && !brand) {
-    filter = data.data.filter((product: any) => {
+    filter = data.data.filter((product: productObj) => {
       return product.category === category;
     });
     return (items = filter);
   } else if (brand && category) {
-    filter = data.data.filter((product: any) => {
+    filter = data.data.filter((product: productObj) => {
       return product.brand === brand && product.category === category;
     });
   } else {
@@ -58,8 +59,9 @@ export const getProductData = async (product: any) => {
   }
 };
 
-export const deleteProduct = async (product: any) => {
-  const { id } = product;
+export const deleteProductData = async (product: any) => {
+  const  id  = product;
+  console.log('in functions: ', product)
   const productData: any = { headers: { id: id } };
   const data = await axios.delete(`/api/products/${id}`, productData);
   const items = data.data;

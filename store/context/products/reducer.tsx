@@ -23,12 +23,13 @@ const productReducer = (state: any, action: any) => {
       return { ...state, products: [...allProducts]};
     }
     case deleteProduct: {
-      const productList = action.payload.products.products;
-      const id = action.payload.data;
+      console.log('reducer: ',action.payload)
+      const id = action.payload.data
+      const productList = action.payload.items
       const allProducts = productList.filter((item: any) => {
         return item.id !== id;
       });
-      return { ...state, allProducts };
+      return { ...state, products: [...allProducts] };
     }
     case getAllProducts: {
       return state 

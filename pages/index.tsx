@@ -2,14 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import {
-  Grid,
-  ImageListItem,
-  ImageList,
-  Box,
-  Card,
-  Typography,
-  Stack,
-} from "@mui/material";
+  Grid,Typography,} from "@mui/material";
 import { useState, useContext } from "react";
 import {
   Nike_Carousel,

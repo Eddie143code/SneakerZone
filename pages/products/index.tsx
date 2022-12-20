@@ -1,18 +1,14 @@
 import React, { useEffect, useState, useContext } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import Link from "next/link";
 import { Grid, Stack, Box, Button, Typography } from "@mui/material";
 import Drawer from "../../components/main/drawer/drawer";
-import axios from "axios";
 import Image from "next/image";
-import { useTheme } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
 import { useSearchParams } from "next/navigation";
-import { getProductData } from "../../store/functions";
 import ProductContext from "../../store/context/products/context";
 
+import { urlParams } from "../../types/types";
+
 const productlist = () => {
-  const [items, setItems] = useState<any>();
 
   const { getItems, allProducts, addtoCart, cart }: any =
     useContext(ProductContext);
@@ -20,9 +16,9 @@ const productlist = () => {
   const searchParams = useSearchParams();
 
   const getData = async () => {
-    const brand = searchParams.get("brand");
-    const category = searchParams.get("category");
-    
+    const brand: urlParams = searchParams.get("brand");
+    const category: urlParams = searchParams.get("category");
+
     getItems({brand, category});
   };
 
