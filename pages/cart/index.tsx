@@ -4,27 +4,23 @@ import Image from "next/image";
 import ProductContext from "../../store/context/products/context";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import { getTotal } from "../../store/context/products/actions";
+
+import { productObj } from "../../types/types";
 
 const cart = () => {
-  const [cartItems, setCartItems] = useState<any>();
-  const [cartTotal, setCartTotal] = useState<any>();
-
-  const { fetchCart, cart, increase, decrease, fetchTotal, total }: any =
-    useContext(ProductContext);
+  const { cart, fetchTotal, total }: any = useContext(ProductContext);
 
   useEffect(() => {
     fetchTotal();
     console.log("render");
-  }, [cartItems]);
+  }, []);
 
   return (
     <Grid container>
-      <button onClick={() => console.log(cartItems)}></button>
       <button onClick={() => console.log(cart)}></button>
       <Grid item xs={12} style={{ height: "20vh" }}></Grid>
       {cart &&
-        cart.map((item: any) => {
+        cart.map((item: productObj) => {
           console.log(item);
           return (
             <>

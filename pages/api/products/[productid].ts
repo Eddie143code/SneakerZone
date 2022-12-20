@@ -1,5 +1,6 @@
 import { Product } from "../../../database/models/product";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { productObj } from "../../../types/types";
 
 const oneProductHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "DELETE") {
@@ -13,7 +14,7 @@ const oneProductHandler = async (req: NextApiRequest, res: NextApiResponse) => {
       console.log("product does not exist");
     }
 
-    const product = await Product.destroy({ where: { id: id } });
+    const product: productObj = await Product.destroy({ where: { id: id } });
 
     return res.status(200).json(product);
   }

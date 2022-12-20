@@ -6,10 +6,9 @@ import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import ProductContext from "../../store/context/products/context";
 
-import { urlParams } from "../../types/types";
+import { urlParams, productObj } from "../../types/types";
 
 const productlist = () => {
-
   const { getItems, allProducts, addtoCart, cart }: any =
     useContext(ProductContext);
 
@@ -19,20 +18,19 @@ const productlist = () => {
     const brand: urlParams = searchParams.get("brand");
     const category: urlParams = searchParams.get("category");
 
-    getItems({brand, category});
+    getItems({ brand, category });
   };
 
   useEffect(() => {
     getData();
   }, [searchParams]);
 
-  const handleCart = (product: any) => {
-    let singleProduct = allProducts.find((item: any) => {
+  const handleCart = (product: number) => {
+    let singleProduct: productObj = allProducts.find((item: productObj) => {
       return item.id == product;
     });
-    singleProduct = {...singleProduct, quantity: 1}
+    singleProduct = { ...singleProduct, quantity: 1 };
     addtoCart(singleProduct);
-
   };
 
   return (
@@ -48,6 +46,7 @@ const productlist = () => {
       </Grid>
       {allProducts &&
         allProducts.map((item: any, i: any) => {
+          console.log(item);
           return (
             <Grid
               key={i}
@@ -88,7 +87,7 @@ const productlist = () => {
                   <Box>{item.brand}</Box>
                   <Box>{item.category}</Box>
                   <Box>R {item.price}</Box>
-                 {/* <Button
+                  {/* <Button
                     href={`/products/product?item=${item.id}`}
                     variant="contained"
                     style={{ width: "50%" }}
@@ -100,8 +99,7 @@ const productlist = () => {
                   <Button
                     onClick={() => handleCart(item.id)}
                     variant="contained"
-                    style={{ width: "50%"}}
-                    
+                    style={{ width: "50%" }}
                   >
                     Add to cart
                   </Button>

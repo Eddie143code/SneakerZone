@@ -1,22 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Drawer from "../../components/admin/drawerAdmin";
 import {
   Grid,
   Typography,
   Box,
-  AppBar,
   Toolbar,
-  IconButton,
   Stack,
   Button,
   Input,
 } from "@mui/material";
-import Image from "next/image";
 import Navbar from "../../components/admin/navbar";
-import axios from "axios";
-import CLOUDINARY from "../../env/cloudinary";
 import { postImage, postProduct } from "../../store/functions";
-import { padding } from "@mui/system";
+
+import { productObj } from "../../types/types";
+
+import productContext from "../../store/context/products/context";
 
 const drawerWidth = 200;
 
@@ -29,10 +27,10 @@ const upload = () => {
 
   const [name, setName] = useState<any>("");
   const [brand, setBrand] = useState<any>("");
-  const [image, setImage] = useState<any>("");
-  const [imageSent, setImageSent] = useState<any>("");
   const [category, setCategory] = useState<any>("");
   const [price, setPrice] = useState<any>("");
+
+  const { uploadItem }: any = useContext(productContext);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -49,21 +47,16 @@ const upload = () => {
     }
 
     formData.append("upload_preset", "sneaker-uploads");
-    let image: any;
-    const data: any = await postImage({ formData: formData }).then(
-      (d) => (image = d.data.public_id)
-    );
-    const post: any = await postProduct({
+
+    const productData: productObj = {
       name: name,
       brand: brand,
       category: category,
-      image: image,
+      image: "",
       price: price,
-    });
-  };
+    };
 
-  const handleClick = async () => {
-    console.log(imageSent);
+    uploadItem({ formData: formData, productData: productData });
   };
 
   return (

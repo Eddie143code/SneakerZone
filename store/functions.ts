@@ -30,9 +30,9 @@ export const postProduct = async (product: any) => {
 
 export const getProductData = async (product: urlParamsObj) => {
   const { brand, category } = product;
-  let items: productObj[] | null = null
+  let items: productObj[] | null = null;
   const data: any = await axios.get("/api/products");
-  let filter: productObj[] | null= null
+  let filter: productObj[] | null = null;
 
   if (!brand && !category) {
     if (!data.data) {
@@ -60,8 +60,8 @@ export const getProductData = async (product: urlParamsObj) => {
 };
 
 export const deleteProductData = async (product: any) => {
-  const  id  = product;
-  console.log('in functions: ', product)
+  const id = product;
+  console.log("in functions: ", product);
   const productData: any = { headers: { id: id } };
   const data = await axios.delete(`/api/products/${id}`, productData);
   const items = data.data;
