@@ -52,8 +52,6 @@ const ProductsProvider = (props: any) => {
   };
 
   const getItems = async ({ brand, category }: urlParamsObj) => {
-    console.log(typeof brand);
-    console.log(typeof category);
     const data = await getProductData({ brand, category });
     dispatch({ type: getProducts, payload: data });
   };

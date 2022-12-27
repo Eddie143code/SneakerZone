@@ -8,6 +8,8 @@ import ProductContext from "../../store/context/products/context";
 
 import { urlParams, productObj } from "../../types/types";
 
+import ProductCard from "../../components/main/custom-cards/product-card/productCard";
+
 const productlist = () => {
   const { getItems, allProducts, addtoCart, cart }: any =
     useContext(ProductContext);
@@ -34,7 +36,10 @@ const productlist = () => {
   };
 
   return (
-    <Grid sx={{ display: "flex" }} container>
+    <Grid
+      sx={{ display: "flex", backgroundColor: "#DC0000", color: "#fff6c3" }}
+      container
+    >
       <Grid container>
         <button onClick={() => console.log(allProducts)}>allProducts</button>
         <button onClick={() => console.log(cart)}>cart</button>
@@ -46,40 +51,26 @@ const productlist = () => {
       </Grid>
       {allProducts &&
         allProducts.map((item: any, i: any) => {
-          console.log(item);
           return (
             <Grid
               key={i}
               container
               style={{
-                marginTop: "8%",
-                height: "20vh",
+                marginTop: "2%",
+                height: "35vh",
                 width: "100vw",
               }}
             >
               <Grid item xs={1} lg={3}></Grid>
-              <Grid
-                item
-                xs={6}
-                lg={3}
-                style={{ marginTop: "5%", borderBottom: "1px solid black" }}
-              >
-                <Image
-                  loader={() => item.image}
-                  alt={i}
-                  src={item.image}
-                  width={200}
-                  height={100}
-                />
+              <Grid item xs={6} lg={3} style={{ marginTop: "5%" }}>
+                <ProductCard text={item.name} image={item.image} />
               </Grid>
               <Grid
                 item
-                xs={4}
+                xs={5}
                 lg={2}
                 style={{
                   marginTop: "5%",
-
-                  borderBottom: "1px solid black",
                 }}
               >
                 <Stack direction="column" style={{ marginLeft: "5%" }}>
@@ -99,18 +90,14 @@ const productlist = () => {
                   <Button
                     onClick={() => handleCart(item.id)}
                     variant="contained"
-                    style={{ width: "50%" }}
+                    sx={{ width: "60%", margin: 0 }}
                   >
                     Add to cart
                   </Button>
                 </Stack>
-                <Grid item xs={1} lg={4}></Grid>
+                <Grid item xs={0} lg={4}></Grid>
               </Grid>
-              <Grid
-                item
-                lg={1}
-                style={{ marginTop: "5%", borderBottom: "1px solid black" }}
-              ></Grid>
+              <Grid item lg={1} style={{ marginTop: "5%" }}></Grid>
               <Grid item lg={4}></Grid>
             </Grid>
           );

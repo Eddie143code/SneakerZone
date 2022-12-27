@@ -32,17 +32,18 @@ const navbar = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" style={{ background: "red" }}>
+      <AppBar position="static" style={{ background: "#850000" }}>
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
             <Link href="/">SneakerZone</Link>
           </Typography>
 
           {isMobile ? (
             <>
               <IconButton>
-                <Link  href="/cart">                <ShoppingCartIcon /></Link>
-
+                <Link href="/cart">
+                  <ShoppingCartIcon />
+                </Link>
               </IconButton>
               <IconButton
                 id="basic-button"

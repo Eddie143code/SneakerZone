@@ -1,8 +1,8 @@
 export type urlParams = string | null;
 
 export interface urlParamsObj {
-  brand: urlParams;
-  category: urlParams;
+  brand: urlParams | undefined;
+  category: urlParams | undefined;
 }
 
 export interface productObj {

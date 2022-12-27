@@ -1,8 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import {
-  Grid,Typography,} from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { useState, useContext } from "react";
 import {
   Nike_Carousel,
@@ -31,12 +30,12 @@ export default function Home() {
   const { allProducts, cart }: any = useContext(ProductContext);
 
   return (
-    <Grid container>
+    <Grid container sx={{ backgroundColor: "#DC0000", color: "#fff6c3" }}>
       {/* Navbar  */}
-      <button onClick={() => console.log(allProducts)}></button>
-      <button onClick={() => console.log(cart)}></button>
+      {/* <button onClick={() => console.log(allProducts)}></button>
+      <button onClick={() => console.log(cart)}></button> */}
 
-      <Grid container>
+      <Grid container sx={{ backgroundColor: "#EEEEEE" }}>
         <Grid item xs={0} lg={3.5}></Grid>
         <Grid item xs={12} lg={5} style={{ height: "35vh", marginTop: "8%" }}>
           <Carousel />
@@ -44,17 +43,49 @@ export default function Home() {
         <Grid item xs={0} lg={3.5}></Grid>
       </Grid>
 
+      {/*Logos*/}
+      <Grid container style={{ marginTop: "12%" }}>
+        <Grid item xs={3} lg={3}>
+          <Image
+            alt="1"
+            src={Nike_Logo}
+            style={{ width: "20vw", height: "60%" }}
+          />
+        </Grid>
+        <Grid item xs={3} lg={3}>
+          <Image
+            alt="2"
+            src={Adidas_Logo}
+            style={{ width: "20vw", height: "60%" }}
+          />
+        </Grid>
+        <Grid item xs={3} lg={3}>
+          <Image
+            alt="3"
+            src={Converse_Logo}
+            style={{ width: "20vw", height: "60%" }}
+          />
+        </Grid>
+        <Grid item xs={3} lg={3}>
+          <Image
+            alt="4"
+            src={Reebok_Logo}
+            style={{ width: "20vw", height: "70%" }}
+          />
+        </Grid>
+      </Grid>
+
       {/* Brand Cards */}
 
       <Grid container style={{ marginTop: "5%" }}>
-        <Grid xs={4} lg={5}></Grid>
+        <Grid xs={2} lg={5}></Grid>
         <Grid xs={4} lg={6}>
-          <Typography variant="h3">Brand</Typography>
+          <Typography variant="h1">Brand</Typography>
         </Grid>
-        <Grid xs={4} lg={1}></Grid>
+        <Grid xs={6} lg={1}></Grid>
       </Grid>
 
-      <Grid container style={{ height: "20vh", marginTop: "8%" }}>
+      <Grid container style={{ height: "20vh", marginTop: "5%" }}>
         <Grid item sm={0} lg={3}></Grid>
         <Grid item xs={5.75} lg={3} style={{ textAlign: "center" }}>
           <GroupCard
@@ -105,31 +136,21 @@ export default function Home() {
       {/* Category Cards */}
 
       <Grid container style={{ marginTop: "6%" }}>
-        <Grid xs={3} lg={5}></Grid>
+        <Grid xs={2} lg={5}></Grid>
         <Grid xs={5} lg={6}>
-          <Typography variant="h3">Category</Typography>
+          <Typography variant="h2">Category</Typography>
         </Grid>
-        <Grid xs={4} lg={1}></Grid>
+        <Grid xs={5} lg={1}></Grid>
       </Grid>
 
       <Grid container style={{ height: "20vh", marginTop: "8%" }}>
         <Grid item xs={2} lg={3}></Grid>
         <Grid item xs={4} lg={3} style={{ textAlign: "center" }}>
-          <GroupCard
-            image={Man}
-            text={"Men"}
-            group={"category"}
-            width={"30%"}
-          />
+          <GroupCard text={"Men"} group={"category"} width={"30%"} />
         </Grid>
         <Grid item xs={0.5} lg={0}></Grid>
         <Grid item xs={4} lg={3} style={{ textAlign: "center" }}>
-          <GroupCard
-            image={Woman}
-            text={"Women"}
-            group={"category"}
-            width={"35%"}
-          />
+          <GroupCard text={"Women"} group={"category"} width={"35%"} />
         </Grid>
         <Grid item xs={2} lg={3}></Grid>
       </Grid>
@@ -137,65 +158,12 @@ export default function Home() {
       <Grid container style={{ marginTop: "4%" }}>
         <Grid item xs={4.5} lg={4.5}></Grid>
         <Grid item xs={3} lg={3} style={{ textAlign: "center" }}>
-          <GroupCard
-            image={Child}
-            text={"Children"}
-            group={"category"}
-            width={"50%"}
-          />
+          <GroupCard text={"Children"} group={"category"} width={"50%"} />
         </Grid>
         <Grid item xs={4.5} lg={4.5}></Grid>
       </Grid>
 
       {/* Logos */}
-
-      <Grid container style={{ marginTop: "12%" }}>
-        <Grid item xs={4.5} lg={5.5}></Grid>
-        <Grid item xs={3} lg={1}>
-          <Image
-            alt="1"
-            src={Nike_Logo}
-            style={{ width: "100%", height: "100%" }}
-          />
-        </Grid>
-        <Grid item xs={4.5} lg={5.5}></Grid>
-      </Grid>
-
-      <Grid container style={{ marginTop: "10%" }}>
-        <Grid item xs={4.5} lg={5.5}></Grid>
-        <Grid item xs={3} lg={1}>
-          <Image
-            alt="2"
-            src={Adidas_Logo}
-            style={{ width: "100%", height: "100%" }}
-          />
-        </Grid>
-        <Grid item xs={4.5} lg={5.5}></Grid>
-      </Grid>
-
-      <Grid container style={{ marginTop: "10%" }}>
-        <Grid item xs={4.5} lg={5.5}></Grid>
-        <Grid item xs={3} lg={1}>
-          <Image
-            alt="3"
-            src={Converse_Logo}
-            style={{ width: "100%", height: "100%" }}
-          />
-        </Grid>
-        <Grid item xs={4.5} lg={5.5}></Grid>
-      </Grid>
-
-      <Grid container style={{ marginTop: "10%" }}>
-        <Grid item xs={4.5} lg={5.5}></Grid>
-        <Grid item xs={3} lg={1}>
-          <Image
-            alt="4"
-            src={Reebok_Logo}
-            style={{ width: "100%", height: "100%" }}
-          />
-        </Grid>
-        <Grid item xs={4.5} lg={5.5}></Grid>
-      </Grid>
     </Grid>
   );
 }
