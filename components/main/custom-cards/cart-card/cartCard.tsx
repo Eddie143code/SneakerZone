@@ -3,7 +3,7 @@ import { Grid, Stack, Box, Typography, IconButton, Card } from "@mui/material";
 import Image from "next/image";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-const cartCard = ({ image, text }: any) => {
+const CartCard = ({ image, text }: any) => {
   const theme = useTheme();
   const isLaptop = useMediaQuery(theme.breakpoints.up("md"));
   const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
@@ -76,4 +76,4 @@ const cartCard = ({ image, text }: any) => {
   );
 };
 
-export default cartCard;
+export default CartCard;

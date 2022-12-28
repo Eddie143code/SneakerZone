@@ -8,7 +8,7 @@ import CartCard from "../../components/main/custom-cards/cart-card/cartCard";
 
 import { productObj } from "../../types/types";
 
-const cart = () => {
+const Cart = () => {
   const { cart, fetchTotal, total }: any = useContext(ProductContext);
 
   useEffect(() => {
@@ -60,4 +60,4 @@ const cart = () => {
   );
 };
 
-export default cart;
+export default Cart;

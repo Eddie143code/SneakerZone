@@ -6,7 +6,7 @@ import Footer from "../components/main/footer";
 import { useState, useContext } from "react";
 import ProductsProvider from "../store/context/products/state";
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps }: any) {
   if (Component.getLayout) {
     return Component.getLayout(
       <ProductsProvider>

@@ -20,7 +20,7 @@ import ProductContext from "../../store/context/products/context";
 
 const drawerWidth = 200;
 
-const allProducts = () => {
+const AllProducts = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -29,15 +29,14 @@ const allProducts = () => {
 
   const [items, setItems] = useState<any>("");
 
-  const {allProducts,getItems, deleteItem} : any = useContext(ProductContext)
-
+  const { allProducts, getItems, deleteItem }: any = useContext(ProductContext);
 
   const getData = async () => {
-    const data = getItems({})
+    const data = getItems({});
   };
 
   const deleteData = async (item: any) => {
-    const data = deleteItem(item)
+    const data = deleteItem(item);
     setItems(data);
   };
 
@@ -71,7 +70,10 @@ const allProducts = () => {
             {allProducts &&
               allProducts.map((item: any) => {
                 return (
-                  <Box style={{ borderStyle: "solid", borderWidth: "0.1rem" }}>
+                  <Box
+                    key={item.name}
+                    style={{ borderStyle: "solid", borderWidth: "0.1rem" }}
+                  >
                     <Image
                       loader={() => item.image}
                       alt={item.id}
@@ -103,8 +105,8 @@ const allProducts = () => {
   );
 };
 
-export default allProducts;
+export default AllProducts;
 
-allProducts.getLayout = function PageLayout(page: any) {
+AllProducts.getLayout = function PageLayout(page: any) {
   return <>{page}</>;
 };

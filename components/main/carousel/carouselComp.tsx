@@ -12,7 +12,7 @@ import { Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-const carouselComp = () => {
+const CarouselComp = () => {
   const [array, setArray] = useState([
     { id: 1, name: Nike_Carousel },
     { id: 2, name: Adidas_Carousel },
@@ -90,4 +90,4 @@ const carouselComp = () => {
   );
 };
 
-export default carouselComp;
+export default CarouselComp;

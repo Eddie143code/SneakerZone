@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-const productCard = ({ text, image, width }: any) => {
+const ProductCard = ({ text, image, width }: any) => {
   const theme = useTheme();
   const isLaptop = useMediaQuery(theme.breakpoints.up("md"));
   const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
@@ -69,4 +69,4 @@ const productCard = ({ text, image, width }: any) => {
   );
 };
 
-export default productCard;
+export default ProductCard;

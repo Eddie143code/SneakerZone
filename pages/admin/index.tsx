@@ -13,7 +13,7 @@ import Navbar from "../../components/admin/navbar";
 
 const drawerWidth = 200;
 
-const index = () => {
+const Index = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
@@ -46,8 +46,8 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;
 
-index.getLayout = function PageLayout(page: any) {
+Index.getLayout = function PageLayout(page: any) {
   return <>{page}</>;
 };

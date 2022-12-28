@@ -10,7 +10,7 @@ import { urlParams, productObj } from "../../types/types";
 
 import ProductCard from "../../components/main/custom-cards/product-card/productCard";
 
-const productlist = () => {
+const Productlist = () => {
   const { getItems, allProducts, addtoCart, cart }: any =
     useContext(ProductContext);
 
@@ -106,4 +106,4 @@ const productlist = () => {
   );
 };
 
-export default productlist;
+export default Productlist;

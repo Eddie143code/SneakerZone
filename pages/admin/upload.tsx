@@ -18,7 +18,7 @@ import productContext from "../../store/context/products/context";
 
 const drawerWidth = 200;
 
-const upload = () => {
+const Upload = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -139,8 +139,8 @@ const upload = () => {
   );
 };
 
-export default upload;
+export default Upload;
 
-upload.getLayout = function PageLayout(page: any) {
+Upload.getLayout = function PageLayout(page: any) {
   return <>{page}</>;
 };

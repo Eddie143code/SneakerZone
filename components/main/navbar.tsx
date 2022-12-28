@@ -18,7 +18,7 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Link from "next/link";
 
-const navbar = () => {
+const Navbar = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -92,7 +92,7 @@ const navbar = () => {
   );
 };
 
-export default navbar;
+export default Navbar;
 
 /* 
 

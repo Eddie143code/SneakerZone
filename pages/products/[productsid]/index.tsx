@@ -10,7 +10,7 @@ import Image from "next/image";
 import ProductContext from "../../../store/context/products/context";
 import { getProductData } from "../../../store/functions";
 
-const oneProduct = () => {
+const OneProduct = () => {
   const [singleProduct, setSingleProduct] = useState<any>();
   const { allProducts, fetchAllProducts, addtoCart, cart }: any =
     useContext(ProductContext);
@@ -18,9 +18,9 @@ const oneProduct = () => {
 
   const getProduct = async () => {
     const oneProduct = searchParams.get("item");
-   // const productFilter = allProducts.find((item: any) => {
-   //   return item.id == oneProduct;
-   // });
+    // const productFilter = allProducts.find((item: any) => {
+    //   return item.id == oneProduct;
+    // });
 
     //console.log(productFilter);
     //setSingleProduct(productFilter);
@@ -82,4 +82,4 @@ const oneProduct = () => {
   );
 };
 
-export default oneProduct;
+export default OneProduct;

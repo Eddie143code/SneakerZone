@@ -34,10 +34,6 @@ export default function ResponsiveDrawer(
   props: Props,
   { mobileOpen, handleDrawerToggle }: any
 ) {
-  const handleClick = (text: any) => {
-    console.log(e);
-  };
-
   const { window } = props;
 
   const router = useRouter();
