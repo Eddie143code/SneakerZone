@@ -1,10 +1,9 @@
 import React from "react";
-import { Box, Card, Typography, Paper } from "@mui/material";
+import { Grid, Stack, Box, Typography, IconButton, Card } from "@mui/material";
 import Image from "next/image";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-
-const productCard = ({ text, image, width }: any) => {
+const cartCard = ({ image, text }: any) => {
   const theme = useTheme();
   const isLaptop = useMediaQuery(theme.breakpoints.up("md"));
   const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
@@ -15,7 +14,7 @@ const productCard = ({ text, image, width }: any) => {
         variant="outlined"
         sx={{ width: "50%", height: "20vh", boxShadow: 8 }}
       >
-        <Box sx={{ width: "50%" }}>
+        <Box sx={{ width: "100%" }}>
           <Image
             loader={() => image}
             alt={`${text}`}
@@ -34,15 +33,19 @@ const productCard = ({ text, image, width }: any) => {
 
   if (isLaptop) {
     return (
-      <Card variant="outlined">
+      <Card
+        variant="outlined"
+        sx={{ width: "65%", height: "20vh", boxShadow: 8 }}
+      >
         <Box sx={{ width: "100%" }}>
           <Image
             loader={() => image}
             alt={`${text}`}
             src={image}
-            width={200}
-            height={150}
+            width={300}
+            height={200}
             style={{
+              padding: 0,
               objectFit: "contain",
             }}
           />
@@ -52,15 +55,19 @@ const productCard = ({ text, image, width }: any) => {
   }
 
   return (
-    <Card variant="outlined">
+    <Card
+      variant="outlined"
+      sx={{ width: "80%", height: "20vh", boxShadow: 8 }}
+    >
       <Box sx={{ width: "100%" }}>
         <Image
           loader={() => image}
           alt={`${text}`}
           src={image}
-          width={200}
-          height={100}
+          width={300}
+          height={200}
           style={{
+            padding: 0,
             objectFit: "contain",
           }}
         />
@@ -69,4 +76,4 @@ const productCard = ({ text, image, width }: any) => {
   );
 };
 
-export default productCard;
+export default cartCard;

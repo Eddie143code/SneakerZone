@@ -78,11 +78,11 @@ export default function Home() {
       {/* Brand Cards */}
 
       <Grid container style={{ marginTop: "5%" }}>
-        <Grid xs={2} lg={5}></Grid>
-        <Grid xs={4} lg={6}>
+        <Grid item xs={2} lg={5}></Grid>
+        <Grid item xs={4} lg={6}>
           <Typography variant="h1">Brand</Typography>
         </Grid>
-        <Grid xs={6} lg={1}></Grid>
+        <Grid item xs={6} lg={1}></Grid>
       </Grid>
 
       <Grid container style={{ height: "20vh", marginTop: "5%" }}>
@@ -136,11 +136,11 @@ export default function Home() {
       {/* Category Cards */}
 
       <Grid container style={{ marginTop: "6%" }}>
-        <Grid xs={2} lg={5}></Grid>
-        <Grid xs={5} lg={6}>
+        <Grid item xs={2} lg={5}></Grid>
+        <Grid item xs={5} lg={6}>
           <Typography variant="h2">Category</Typography>
         </Grid>
-        <Grid xs={5} lg={1}></Grid>
+        <Grid item xs={5} lg={1}></Grid>
       </Grid>
 
       <Grid container style={{ height: "20vh", marginTop: "8%" }}>

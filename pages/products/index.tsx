@@ -62,12 +62,12 @@ const productlist = () => {
               }}
             >
               <Grid item xs={1} lg={3}></Grid>
-              <Grid item xs={6} lg={3} style={{ marginTop: "5%" }}>
+              <Grid item xs={6} lg={5} style={{ marginTop: "5%" }}>
                 <ProductCard text={item.name} image={item.image} />
               </Grid>
               <Grid
                 item
-                xs={5}
+                xs={6}
                 lg={2}
                 style={{
                   marginTop: "5%",
@@ -95,7 +95,7 @@ const productlist = () => {
                     Add to cart
                   </Button>
                 </Stack>
-                <Grid item xs={0} lg={4}></Grid>
+                <Grid item xs={0} lg={2}></Grid>
               </Grid>
               <Grid item lg={1} style={{ marginTop: "5%" }}></Grid>
               <Grid item lg={4}></Grid>

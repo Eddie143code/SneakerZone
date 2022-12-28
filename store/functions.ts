@@ -54,6 +54,7 @@ export const getProductData = async (product: urlParamsObj) => {
     filter = data.data.filter((product: productObj) => {
       return product.brand === brand && product.category === category;
     });
+    return (items = filter);
   } else {
     return items;
   }

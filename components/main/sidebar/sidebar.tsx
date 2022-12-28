@@ -161,7 +161,9 @@ const sidebar = ({ category, setCategory, setBrand, brand, onSubmit }: any) => {
               label="Children"
             />
           </FormGroup>
-          <Button type="submit">Submit</Button>
+          <Button variant="contained" type="submit">
+            Submit
+          </Button>
         </FormControl>
       </form>
     </Box>
