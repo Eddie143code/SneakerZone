@@ -21,15 +21,19 @@ const brandCard = ({ image, text, group, width, height }: any) => {
           </Typography>
         </Box>
         <Box>
-          <Image
-            alt={`${text}`}
-            src={image}
-            style={{
-              width: `${width}`,
-              height: `${height}`,
-              objectFit: "contain",
-            }}
-          />
+          {image ? (
+            <Image
+              alt={`${text}`}
+              src={image}
+              style={{
+                width: `${width}`,
+                height: `${height}`,
+                objectFit: "contain",
+              }}
+            />
+          ) : (
+            <></>
+          )}
         </Box>
       </Paper>
     </Link>
