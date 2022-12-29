@@ -17,7 +17,8 @@ const productReducer = (state: any, action: any) => {
       return state;
     }
     case getProducts: {
-      const allProducts = action.payload.map((item: any) => {
+      console.log(action.payload);
+      const allProducts = action.payload.data.map((item: any) => {
         return item;
       });
       return { ...state, products: [...allProducts] };
@@ -26,7 +27,7 @@ const productReducer = (state: any, action: any) => {
       console.log("reducer: ", action.payload);
       const id = action.payload.data;
       const productList = action.payload.items;
-      const allProducts = productList.filter((item: any) => {
+      const allProducts = productList.data.filter((item: any) => {
         return item.id !== id;
       });
       return { ...state, products: [...allProducts] };

@@ -1,11 +1,12 @@
 //import { products } from "../../../data/products";
-import { Product } from "../../../database/models/product";
+import supabase from "../../../database/db";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { productObj, productObjArr } from "../../../types/types";
 
 const productHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "GET") {
-    const products: productObjArr = await Product.findAll({});
+    const products: any = await supabase.from("products").select("*");
+
     return res.status(200).json(products);
   }
   if (req.method === "POST") {
@@ -16,7 +17,7 @@ const productHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     console.log(image);
     console.log(price);
 
-    const product = await Product.create({
+    const product: any = await supabase.from("products").insert({
       name: name,
       brand: brand,
       category: category,
