@@ -18,7 +18,7 @@ const productReducer = (state: any, action: any) => {
     }
     case getProducts: {
       console.log(action.payload);
-      const allProducts = action.payload.data.map((item: any) => {
+      const allProducts = action.payload.map((item: any) => {
         return item;
       });
       return { ...state, products: [...allProducts] };

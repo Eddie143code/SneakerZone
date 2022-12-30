@@ -31,27 +31,27 @@ export const postProduct = async (product: any) => {
 export const getProductData = async (product: urlParamsObj) => {
   const { brand, category } = product;
   let items: productObj[] | null = null;
-  const data: any = await axios.get("/api/products");
+  const dataTemp: any = await axios.get("/api/products");
+  const data = dataTemp.data.data;
   let filter: productObj[] | null = null;
-
   if (!brand && !category) {
-    if (!data.data) {
+    if (!data) {
       return items;
     }
-    return (items = data.data);
+    return (items = data);
   } else if (brand && !category) {
-    filter = data.data.filter((product: productObj) => {
+    filter = data.filter((product: productObj) => {
       return product.brand === brand;
     });
 
     return (items = filter);
   } else if (category && !brand) {
-    filter = data.data.filter((product: productObj) => {
+    filter = data.filter((product: productObj) => {
       return product.category === category;
     });
     return (items = filter);
   } else if (brand && category) {
-    filter = data.data.filter((product: productObj) => {
+    filter = data.filter((product: productObj) => {
       return product.brand === brand && product.category === category;
     });
     return (items = filter);

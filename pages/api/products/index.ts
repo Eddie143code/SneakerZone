@@ -1,4 +1,4 @@
-//import { products } from "../../../data/products";
+
 import supabase from "../../../database/db";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { productObj, productObjArr } from "../../../types/types";
