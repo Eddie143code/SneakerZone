@@ -21,7 +21,7 @@ const Cart = () => {
       container
       sx={{ backgroundColor: "#DC0000", color: "#fff6c3", fontWeight: 500 }}
     >
-      <button onClick={() => console.log(cart)}></button>
+      {/*<button onClick={() => console.log(cart)}></button>*/}
       <Grid item xs={12} style={{ height: "10vh" }}></Grid>
       {cart &&
         cart.map((item: productObj) => {

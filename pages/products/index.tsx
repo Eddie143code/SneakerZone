@@ -41,8 +41,8 @@ const Productlist = () => {
       container
     >
       <Grid container>
-        <button onClick={() => console.log(allProducts)}>allProducts</button>
-        <button onClick={() => console.log(cart)}>cart</button>
+        {/*<button onClick={() => console.log(allProducts)}>allProducts</button>
+        <button onClick={() => console.log(cart)}>cart</button>*/}
         <Grid item xs={4}></Grid>
         <Grid item xs={4}>
           <Drawer />
